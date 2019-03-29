@@ -7,7 +7,10 @@ import * as serviceWorker from './serviceWorker';
 import {Provider} from 'react-redux'
 import cfgStore from "./store";
 
+import simpleAction from './actions/simple';
+
 const store = cfgStore();
+store.dispatch(simpleAction());
 
 render(
 <Provider store={store}>
