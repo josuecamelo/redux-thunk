@@ -32,7 +32,7 @@ export function thunkFetchData() {
     return async (dispatch) => {
         dispatch(isFetching(true));
         try {
-            const {data} = await axios.get('http://api.icndb.com/jokes');
+            const {data} = await axios.get('https://api.icndb.com/jokes');
             dispatch(fetched(data.value));
             dispatch(isFetching(false));
         } catch (err) {

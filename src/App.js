@@ -1,32 +1,36 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-//import from './actions';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {thunkFetchData} from './actions/app';
 
 class App extends Component {
-  componentDidMount() {
-    console.log('Mounted');
+    componentDidMount() {
+        console.log('Mounted');
+        this.props.fetchData();
+    }
 
-    //this.props.fetchData();
-  }
+    render() {
+        const {data} = this.props;
+        return (
+            <div>
 
-  render() {
-    return (
-      <div>
-      </div>
-    );
-  }
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = (state) => {
-  return {
-    data: state.data
-  }
+    console.log(state);
+    return {
+        data: state.fetched,
+        isFetching: state.isFetching,
+        error: state.fetchedError
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    //fetchData: () => dispatch(fn)
-  }
+    return {
+        fetchData: () => dispatch(thunkFetchData)
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
